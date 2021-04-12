@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class movementb : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public float speed;
+    private Rigidbody2D myRigidbody; 
+    private Vector3 change;
+
     void Start()
     {
-        
+        myRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey (KeyCode.L)) 
+        change = Vector2.zero;
+        change.x = Input.GetAxisRaw("Horizontal2");
+        change.y = Input.GetAxisRaw("Vertical2");
+        if(change != Vector3.zero)
         {
-            gameObject.transform.position += new Vector3(0.1f,0,0);
+            MoveCharacter();
         }
-
-        if (Input.GetKey (KeyCode.J)) 
-        {
-            gameObject.transform.position += new Vector3(-0.1f,0,0);
-        }
-  
-        if (Input.GetKey (KeyCode.I)) 
-        {
-            gameObject.transform.position += new Vector3(0,0.1f,0);
-        }
-
-        if (Input.GetKey (KeyCode.K)) 
-        {
-            gameObject.transform.position += new Vector3(0,-0.1f,0);
-        }
- 
     }
+
+    void MoveCharacter()
+    {
+        myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
+    }
+ 
+    
 }
