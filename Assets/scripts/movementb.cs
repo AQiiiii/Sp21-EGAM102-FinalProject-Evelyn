@@ -22,11 +22,21 @@ public class movementb : MonoBehaviour
         change = Vector2.zero;
         change.x = Input.GetAxisRaw("Horizontal2");
         change.y = Input.GetAxisRaw("Vertical2");
-        if(change != Vector3.zero)
+        UpdateAnimationAndMove();
+    }
+
+    void UpdateAnimationAndMove()
+    {
+         if(change != Vector3.zero)
         {
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
             animator.SetFloat("moveY", change.y);
+            animator.SetBool("moving",true);
+        }
+        else
+        {
+            animator.SetBool("moving",false);
         }
     }
 
