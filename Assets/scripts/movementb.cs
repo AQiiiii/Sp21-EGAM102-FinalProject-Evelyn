@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class movementb : MonoBehaviour
 {
-    
     public float speed;
     private Rigidbody2D myRigidbody; 
     private Vector3 change;
     private Animator animator;
 
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+       
     }
 
     // Update is called once per frame
@@ -22,7 +23,19 @@ public class movementb : MonoBehaviour
         change = Vector2.zero;
         change.x = Input.GetAxisRaw("Horizontal2");
         change.y = Input.GetAxisRaw("Vertical2");
+        if(Input.GetButtonDown("pick"))
+        {
+            StartCoroutine(pickco());
+        }
         UpdateAnimationAndMove();
+    }
+
+    private IEnumerator pickco()
+    {
+        animator.SetBool("hand",true);
+        yield return null;
+        animator.SetBool("hand",false);
+        yield return new WaitForSeconds(.3f);
     }
 
     void UpdateAnimationAndMove()
@@ -44,6 +57,7 @@ public class movementb : MonoBehaviour
     {
         myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
+   
  
     
 }

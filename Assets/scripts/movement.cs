@@ -22,6 +22,19 @@ public class movement : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
         UpdateAnimationAndMove();
+        if(Input.GetButtonDown("qpick"))
+        {
+            StartCoroutine(pickco());
+        }
+        
+    }
+
+     private IEnumerator pickco()
+    {
+        animator.SetBool("hand",true);
+        yield return null;
+        animator.SetBool("hand",false);
+        yield return new WaitForSeconds(.3f);
     }
 
     void UpdateAnimationAndMove()
