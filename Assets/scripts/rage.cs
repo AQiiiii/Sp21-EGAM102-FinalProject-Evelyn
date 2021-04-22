@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class rage : MonoBehaviour
 {
-    public int health;
-    public string taskname;
-    public int ragepoint;
+    
      
     // Start is called before the first frame update
     void Start()

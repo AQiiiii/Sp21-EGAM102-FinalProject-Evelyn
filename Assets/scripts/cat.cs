@@ -7,7 +7,7 @@ public class cat : MonoBehaviour
   
     public float timer = 30.0f;
     public AudioClip miao; 
-    private AudioSource  source;  
+    
 
     private Animator animator; 
 
@@ -19,26 +19,24 @@ public class cat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 开始
         animator = GetComponent<Animator>();
-        source = GetComponent<AudioSource>(); 
+        
        
      
     }
 
 
+    // 更新
     void Update()
     {
         timer -= Time.deltaTime;
         if(timer<=0f)
         {
-            source.Play();
-
-           
+            
             animator.SetBool("timer",true);
 
             damage -= Time.deltaTime ;
-
-          
 
         }      
     }
@@ -47,9 +45,11 @@ public class cat : MonoBehaviour
 
     public void lu()
     {
-        animator.SetBool("lu",true);
-        StartCoroutine(wait());
         damage = 0.0f;
+        animator.SetBool("lu",true);
+       
+        StartCoroutine(wait());
+        
      
 
     }

@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class text : MonoBehaviour
 {
-    public GameObject dialogBox;
-    public Text dialogText;
-    public string dialog;
-    public bool playerInRange;
+    public GameObject dialogBoxA;
+    public Text dialogTextA;
+    public string dialogA;
+    public bool playerInRangeA;
+
+    public GameObject dialogBoxB;
+    public Text dialogTextB;
+    public string dialogB;
+    public bool playerInRangeB;
     
 
     // Start is called before the first frame update
@@ -20,15 +25,33 @@ public class text : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerInRange)
+        if(Input.GetKeyDown(KeyCode.E) && playerInRangeB)
         {
-            dialogBox.SetActive(true);
-            dialogText.text = dialog;
-        }
-        else
-        {
-            dialogBox.SetActive(false);
+            if(dialogBoxB.activeInHierarchy)
+            {
+                dialogBoxB.SetActive(false);
+            }
+            else
+            {
+                dialogBoxB.SetActive(true);
+                dialogTextB.text = dialogB;
+            }
             
+           
+        }
+        if(Input.GetKeyDown(KeyCode.O) && playerInRangeA)
+        {
+            if(dialogBoxA.activeInHierarchy)
+            {
+                dialogBoxA.SetActive(false);
+            }
+            else
+            {
+                dialogBoxA.SetActive(true);
+                dialogTextA.text = dialogA;
+            }
+            
+           
         }
 
       
@@ -38,17 +61,27 @@ public class text : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("PlayerB"))
         {
-            playerInRange = true;
+            playerInRangeB = true;
+        }
+         if(other.CompareTag("PlayerA"))
+        {
+            playerInRangeA = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("PlayerA"))
         {
-           playerInRange = false;
+           playerInRangeA = false;
+           dialogBoxA.SetActive(false);
+        }
+        if(other.CompareTag("PlayerB"))
+        {
+           playerInRangeB = false;
+           dialogBoxB.SetActive(false);
         }
     }
 
