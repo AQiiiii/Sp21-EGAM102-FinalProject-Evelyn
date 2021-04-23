@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class timer : MonoBehaviour
 {
     Image timerBar;
+    public float a;
     public float maxTime = 60f;
     float timeLeft;
-    //public GameObject timeUpText;
-    // Start is called before the first frame update
+   
     void Start()
     {
-        //timeUpText.SetActive(false);
+       
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
+     
     }
 
     // Update is called once per frame
@@ -22,13 +24,15 @@ public class timer : MonoBehaviour
     {
         if (timeLeft > 0)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeft -= Time.deltaTime ;
             timerBar.fillAmount = timeLeft / maxTime;
         }
         else
         {
-            //timeUpText.SetActive(true);
+            SceneManager.LoadScene("3");
             Time.timeScale = 0;
         }
     }
+
+    
 }

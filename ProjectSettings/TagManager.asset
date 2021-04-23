@@ -10,6 +10,12 @@ TagManager:
   - PlayerB
   - PlayerA
   - game
+  - tv
+  - bed
+  - phone
+  - boil
+  - sleepb
+  - letter
   layers:
   - Default
   - TransparentFX

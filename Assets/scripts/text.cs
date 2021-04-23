@@ -35,9 +35,7 @@ public class text : MonoBehaviour
             {
                 dialogBoxB.SetActive(true);
                 dialogTextB.text = dialogB;
-            }
-            
-           
+            }   
         }
         if(Input.GetKeyDown(KeyCode.O) && playerInRangeA)
         {
@@ -49,9 +47,7 @@ public class text : MonoBehaviour
             {
                 dialogBoxA.SetActive(true);
                 dialogTextA.text = dialogA;
-            }
-            
-           
+            } 
         }
 
       
